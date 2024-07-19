@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    /* outline: 1px solid red; */
+  }
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: "Inter", "Nunito", sans-serif;
+    font-size: 1.6rem;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  input , textarea {
+    background: transparent;
+  }
+  input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+  }
+  input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    @apply hidden;
+  }
+}
+
+@layer components {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "grid-text"
+    "grid-image"
+    ;
+  }
+  .grid-container-image {
+    grid-area: grid-image;
+  }
+  .grid-container-text {
+    grid-area: grid-text;
+  }
+  .login-page-modal {
+    background: url("../src/assets/images/recycling-selection-image.png");
+    background-size: cover;
+    background-position-x: -25rem;
+  }
+  .login-backdrop {
+    backdrop-filter: blur(4px);
+  }
+  .login-backdrop-screen {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .activate-position .login-page-modal {
+    transform: translateX(100%);
+    right: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .activate-position .login-info-modal {
+    transform: translateX(-100%);
+    left: 0;
+  }
+  .about-hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../src/assets/images/about-page-images/hero-section-bg.webp");
+    background-size: cover;
+    background-position: center top;
+  }
+
+  @media screen and (max-width: 900px) {
+    .login-page-modal {
+      background-position-x: 0;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+    .login-backdrop {
+      backdrop-filter: blur(0);
+    }
+    .activate-position .login-page-modal {
+      transform: translateX(0);
+      transform: translateY(-42.5rem);
+    }
+    .activate-position .login-info-modal {
+      transform: translateX(0);
+      transform: translateY(15.72rem);
+    }
+    .hamburger-icon.active > section:nth-child(1) {
+      transform: rotate(45deg) translateY(0.85rem);
+    }
+    .hamburger-icon.active > section:nth-child(2) {
+      display: none;
+    }
+    .hamburger-icon.active > section:nth-child(3) {
+      transform: rotate(-45deg) translateY(-0.85rem);
+    }
+    .hamburger-icon.active .mobile-navigation-menu {
+      left: 0
+    }
+  }
+}
+
+@layer utilities {
+  .center {
+    @apply grid place-items-center;
+  }
+  .gen-transistion {
+    transition: all 0.35s ease-in-out;
+  }
+  .linear-transistion {
+    transition: all 1s linear;
+  }
+  @keyframes move {
+    from {
+      transform: translateY(5rem);
+    }
+    to {
+      transform: translateY(-5rem);
+    }
+  }
+}
